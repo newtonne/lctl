@@ -21,12 +21,38 @@ git clone git@github.com:newtonne/lctl.git
 cd lctl && sudo cp lctl.sh /usr/local/bin/lctl
 ```
 
-Optionally, bash tab-completion can also be installed:
+### Installing completion
+
+#### bash
+
+On macOS with Homebrew:
+
+```bash
+cp completions/lctl.bash $(brew --prefix)/share/zsh/site-functions/lctl
+```
+
+OS-independent:
 
 ```bash
 mkdir -p ~/.local/share/bash-completion/completions
 cp completions/lctl.bash ~/.local/share/bash-completion/completions/lctl
 echo ". ~/.local/share/bash-completion/completions/lctl" >> ~/.bash_profile # may not be necessary
+```
+
+#### zsh
+
+On macOS with Homebrew:
+
+```zsh
+cp completions/_lctl $(brew --prefix)/share/zsh/site-functions/_lctl
+```
+
+OS-independent:
+
+```zsh
+mkdir -p ~/.local/share/zsh-completion/completions
+cp completions/_lctl ~/.local/share/zsh-completion/completions/_lctl
+echo 'fpath=( ~/.local/share/zsh-completion/completions $fpath )' >> ~/.zshrc
 ```
 
 ## Usage

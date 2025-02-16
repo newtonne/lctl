@@ -5,10 +5,10 @@ User-friendly launchctl wrapper and helper functions
 ## Features
 
 - Easy CLI management of launchd user agents
-- Written in bash and compatible with bash 3.2 (pre-installed version in macOS)
-- Bash tab-completion for commands and agents
+- Written in bash and compatible with bash 3.2+ (pre-installed version in macOS)
+- Tab-completion support for bash and zsh
 - No dependencies required beyond a base macOS install
-- Tested on macOS 10.15 Catalina
+- Tested on macOS 15 Sequoia but should be compatible with older versions too
 
 ![GIF showing lctl usage](lctl-demo.gif)
 
@@ -16,7 +16,7 @@ User-friendly launchctl wrapper and helper functions
 
 Clone the repo and copy `lctl` to a directory in your `$PATH` e.g. `/usr/local/bin`:
 
-```bash
+```sh
 git clone git@github.com:newtonne/lctl.git
 cd lctl && sudo cp lctl.sh /usr/local/bin/lctl
 ```
@@ -25,34 +25,30 @@ cd lctl && sudo cp lctl.sh /usr/local/bin/lctl
 
 #### bash
 
-On macOS with Homebrew:
+With Homebrew:
 
-```bash
-cp completions/lctl.bash $(brew --prefix)/share/zsh/site-functions/lctl
+```sh
+cp completions/lctl.bash $(brew --prefix)/etc/bash_completion.d/lctl
 ```
 
-OS-independent:
+With Macports:
 
-```bash
-mkdir -p ~/.local/share/bash-completion/completions
-cp completions/lctl.bash ~/.local/share/bash-completion/completions/lctl
-echo ". ~/.local/share/bash-completion/completions/lctl" >> ~/.bash_profile # may not be necessary
+```sh
+sudo cp completions/lctl.bash $(dirname $(dirname $(which port)))/etc/bash_completion.d/lctl
 ```
 
 #### zsh
 
-On macOS with Homebrew:
+With Homebrew:
 
-```zsh
-cp completions/_lctl $(brew --prefix)/share/zsh/site-functions/_lctl
+```sh
+cp completions/_lctl $(brew --prefix)/share/zsh/site-functions
 ```
 
-OS-independent:
+With Macports:
 
-```zsh
-mkdir -p ~/.local/share/zsh-completion/completions
-cp completions/_lctl ~/.local/share/zsh-completion/completions/_lctl
-echo 'fpath=( ~/.local/share/zsh-completion/completions $fpath )' >> ~/.zshrc
+```sh
+sudo cp completions/_lctl $(dirname $(dirname $(which port)))/share/zsh/site-functions
 ```
 
 ## Usage

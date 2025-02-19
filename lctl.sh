@@ -17,7 +17,7 @@ COMMANDS
     log             View logs in $PAGER
     logfiles        Print log file paths
     reload          Shortcut for bootout => bootstrap
-    tail            Tail stdout log file
+    tail            Tail logs
 
     bootout         Unload the agent
     bootstrap       Load the agent
@@ -59,14 +59,16 @@ lctl__listdisabled() {
 }
 
 lctl__log() {
-    [ "$(lctl__logfiles)" != "" ] &&
-        IFS=$'\n' read -r -d "" -a logfiles < \
-            <( lctl__logfiles | sed "s/^[^=]*= //" | uniq )
-        ${PAGER:-less +G} "${logfiles[@]}"
+    IFS=$'\n' read -r -d "" -a logfiles < \
+        <( lctl__logfiles | sed "s/^[^=]*= //" | uniq )
+    [ -n "$logfiles" ] && ${PAGER:-less +G} "${logfiles[@]}"
 }
 
 lctl__logfiles() {
-    launchctl print "gui/$uid/$agent_name" | grep -Eo "std(err|out) path = .*"
+    launchctl print "gui/$uid/$agent_name" | grep -Eo "std(err|out) path = .*" || {
+        echo "error: no log files configured for $agent_name" >&2
+        exit 1
+    }
 }
 
 lctl__reload() {
@@ -75,7 +77,9 @@ lctl__reload() {
 }
 
 lctl__tail() {
-    tail -50f "$(lctl__logfiles | grep "^\\s*stdout" | sed "s/^[^=]*= //")"
+    IFS=$'\n' read -r -d "" -a logfiles < \
+        <( lctl__logfiles | sed "s/^[^=]*= //" | uniq )
+    [ -n "$logfiles" ] && tail -50f "${logfiles[@]}"
 }
 
 lctl__bootout() {

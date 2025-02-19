@@ -69,7 +69,7 @@ COMMANDS
     log             View logs in $PAGER
     logfiles        Print log file paths
     reload          Shortcut for bootout => bootstrap
-    tail            Tail stdout log file
+    tail            Tail logs
 
     bootout         Unload the agent
     bootstrap       Load the agent

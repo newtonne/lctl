@@ -62,23 +62,23 @@ USAGE
     lctl [-h|--help]
 
 COMMANDS
-    cat             print plist file to stdout
-    edit            edit plist file in $EDITOR
-    file            print plist file path to stdout
-    listdisabled    list disabled agents
-    log             view stdout and stderr logs in $PAGER
-    logfiles        print stdout and stderr log file paths to stdout
-    reload          shortcut for bootout => bootstrap
-    tail            tail stdout log file
+    cat             Print plist file contents
+    edit            Edit plist file in $EDITOR
+    file            Print plist file path
+    listdisabled    List disabled agents
+    log             View logs in $PAGER
+    logfiles        Print log file paths
+    reload          Shortcut for bootout => bootstrap
+    tail            Tail stdout log file
 
-    bootout         unload the agent
-    bootstrap       load the agent
-    disable         prevent the agent from being loaded
-    enable          enable the agent
-    kickstart       execute the agent immediately
-    kill            send SIGTERM to the agent
-    list            summary of all agents or info on specific agent
-    print           information about the domain or a specific agent
+    bootout         Unload the agent
+    bootstrap       Load the agent
+    disable         Prevent agent from being loaded
+    enable          Enable the agent
+    kickstart       Execute the agent immediately
+    kill            Send SIGTERM to the agent
+    list            List all agents or brief agent info
+    print           Detailed domain or agent info
 
     See launchctl(1) for more information on second set of commands.
 
@@ -89,7 +89,7 @@ AGENT
 EXAMPLES
     lctl reload myagent   bootout then bootstrap agent defined in
                               ~/Library/LaunchAgents/*myagent*.plist
-    lctl listdisabled     list all disabled launchd user agents
+    lctl listdisabled     List all disabled launchd user agents
 ```
 
 ## Licensing

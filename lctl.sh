@@ -110,7 +110,7 @@ lctl__list() {
     if [ -n "$agent_name" ]; then
         launchctl list "$agent_name"
     else
-        launchctl list | grep -E "^PID|${all_agents_regex}" | sort -k3,3
+        launchctl list | cat <(head -n 1)  <(tail -n +2 | grep -E "^PID|${all_agents_regex}" | sort -k3,3)
     fi
 }
 

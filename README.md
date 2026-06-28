@@ -51,6 +51,21 @@ With Macports:
 sudo cp completions/_lctl $(dirname $(dirname $(which port)))/share/zsh/site-functions
 ```
 
+#### fish
+
+With Homebrew:
+
+```sh
+cp completions/lctl.fish $(brew --prefix)/share/fish/vendor_completions.d/lctl.fish
+```
+
+For a single user:
+
+```sh
+mkdir -p ~/.config/fish/completions
+cp completions/lctl.fish ~/.config/fish/completions/lctl.fish
+```
+
 ## Usage
 
 ```
